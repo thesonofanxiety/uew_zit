@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>e‑BookStore – Europejski Rynek Ebooków</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.css" id="theme">
+  <style>
+    .reveal h1 { font-size: 2.2em; }
+    .reveal h2 { font-size: 1.5em; color: #42affa; }
+    .reveal h3 { font-size: 1.15em; color: #8be9fd; }
+    .reveal h4 { font-size: 1em; color: #f1fa8c; }
+    .reveal p, .reveal li, .reveal td, .reveal th { font-size: 0.65em; line-height: 1.5; }
+    .reveal table { font-size: 0.55em; width: 100%; border-collapse: collapse; margin: 0.4em 0; }
+    .reveal th { background: #1a1a2e; color: #42affa; padding: 8px; text-align: left; }
+    .reveal td { background: #16213e; padding: 6px 8px; vertical-align: top; }
+    .reveal tr:nth-child(even) td { background: #0f3460; }
+    .reveal ul { list-style-type: disc; }
+    .reveal ul ul { list-style-type: circle; }
+    .reveal .subtitle { color: #8be9fd; font-size: 0.9em; }
+    .reveal .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
+    .badge-red { background: #ff5555; color: #fff; }
+    .badge-yellow { background: #f1fa8c; color: #333; }
+    .badge-green { background: #50fa7b; color: #333; }
+    .two-col { display: flex; gap: 2em; }
+    .two-col > div { flex: 1; }
+    .reveal section { text-align: left; }
+    .reveal section.center { text-align: center; }
+    .highlight { color: #f1fa8c; font-weight: bold; }
+    .accent { color: #42affa; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<section class="center" data-background-gradient="linear-gradient(135deg, #0f0c29, #302b63, #24243e)">
+  <h1>📚 e‑BookStore</h1>
+  <h3 class="subtitle">Europejski Rynek Ebooków</h3>
+  <p style="font-size:0.7em; color:#aaa; margin-top:1em;">
+    Plan projektu · Planowanie strategiczne · Cele SMART · Rejestr ryzyk
+  </p>
+  <p style="font-size:0.55em; color:#666; margin-top:2em;">
+    Projekt zaliczeniowy – Zarządzanie Projektami<br>
+    2025/2026
+  </p>
+</section>
+
+<!-- ==================== SLIDE 2: SPIS TREŚCI ==================== -->
+<section>
+  <h2>📋 Spis treści</h2>
+  <ol style="font-size:0.7em; line-height:2;">
+    <li><span class="accent">Plan projektu</span> – opis, cele, wymagania, rezultaty, zakres</li>
+    <li><span class="accent">Planowanie strategiczne</span> – rynek, wizja, strategie, plan działania</li>
+    <li><span class="accent">Cele SMART</span> – szczegółowa analiza każdego celu</li>
+    <li><span class="accent">Rejestr ryzyk</span> – identyfikacja, ocena, metody ograniczenia</li>
+    <li><span class="accent">Struktura podziału prac (WBS)</span></li>
+  </ol>
+</section>
+
+<!-- ==================== SLIDE 3: OPIS PROJEKTU ==================== -->
+<section>
+  <h2>📖 Opis projektu</h2>
+  <table>
+    <tr><th style="width:25%;">Nazwa</th><td>e‑BookStore – Europejski Rynek Ebooków</td></tr>
+    <tr><th>Opis</th><td>Platforma internetowa umożliwiająca autorom i wydawcom publikowanie, sprzedaż oraz zarządzanie ebookami (<span class="highlight">EPUB, PDF, MOBI, AZW3</span>). Zabezpieczenie treści <span class="highlight">Adobe DRM</span>, płatności (karty, PayPal, kryptowaluty, lokalni dostawcy), wielojęzyczny interfejs oraz zgodność z <span class="highlight">GDPR</span> i <span class="highlight">PCI‑DSS</span>.</td></tr>
+  </table>
+</section>
+
+<!-- ==================== SLIDE 4: CELE PROJEKTU ==================== -->
+<section>
+  <h2>🎯 Cele projektu</h2>
+  <ul style="font-size:0.65em;">
+    <li>Dostarczyć <span class="highlight">MVP</span> w budżecie przy <span class="highlight">SLA ≥ 99,5%</span> dostępności.</li>
+    <li>Udostępnić <span class="highlight">portal partnerów</span> do zarządzania treścią i danymi sprzedażowymi.</li>
+    <li>Zintegrować płatności z <span class="highlight">automatycznym obliczaniem VAT UE</span>.</li>
+    <li>Zapewnić <span class="highlight">raportowanie do BI</span> (Tableau lub rozwiązanie open‑source).</li>
+    <li>Zapewnić wysoką dostępność dzięki architekturze <span class="highlight">hybrydowej (AWS + Hetzner/OVH)</span> i codziennym backupom (30 dni).</li>
+  </ul>
+</section>
+
+<!-- ==================== SLIDE 5: WYMAGANIA FUNKCJONALNE ==================== -->
+<section>
+  <h2>⚙️ Wymagania funkcjonalne</h2>
+  <ul style="font-size:0.6em;">
+    <li><span class="highlight">Publikacja ebooków</span> w różnych formatach z Adobe DRM.</li>
+    <li><span class="highlight">Sklep</span> z wyszukiwaniem, filtrowaniem i sortowaniem (cena, data, tagi).</li>
+    <li><span class="highlight">Portal autorów/publisherów:</span> upload, edycja metadanych, eksport/import CSV/JSON, podgląd statystyk.</li>
+    <li><span class="highlight">Konto użytkownika:</span> logowanie społecznościowe (Google, Microsoft, PayPal), 2FA + passkey, lista życzeń, wirtualna półka.</li>
+    <li><span class="highlight">Mechanizm gift‑card / gift‑link.</span></li>
+    <li><span class="highlight">Integracja bramek płatniczych</span> (Stripe, PayPal, lokalni dostawcy) oraz moduł VAT.</li>
+  </ul>
+</section>
+
+<!-- ==================== SLIDE 6: WYMAGANIA NIEFUNKCJONALNE ==================== -->
+<section>
+  <h2>🔧 Wymagania niefunkcjonalne</h2>
+  <ul style="font-size:0.65em;">
+    <li><span class="highlight">Wydajność</span> ≥ 200 żądań / s.</li>
+    <li><span class="highlight">Dostępność</span> 99,5% (redundancja AWS + Hetzner/OVH).</li>
+    <li><span class="highlight">Codzienne backupy</span> Docker, retencja 30 dni.</li>
+    <li><span class="highlight">Lokalizacja UI i waluty</span> (EN, DE, FR, ES, IT, NL).</li>
+    <li><span class="highlight">Zgodność z GDPR i PCI‑DSS.</span></li>
+  </ul>
+</section>
+
+<!-- ==================== SLIDE 7: REZULTATY ==================== -->
+<section>
+  <h2>✅ Rezultaty</h2>
+  <ul style="font-size:0.6em;">
+    <li><span class="highlight">Gotowa aplikacja webowa</span> (frontend + backend) wdrożona w AWS Frankfurt z fail‑over na Hetzner/OVH.</li>
+    <li><span class="highlight">Portal partnerów</span> umożliwiający autorom wprowadzanie i śledzenie treści oraz sprzedaży.</li>
+    <li><span class="highlight">Zintegrowany system płatności</span> i automatyczna obsługa podatków.</li>
+    <li><span class="highlight">Raporty sprzedażowe</span> dostępne w BI (Tableau / Metabase).</li>
+    <li><span class="highlight">Dokumentacja operacyjna</span>, instrukcje dla użytkowników oraz procedury odzyskiwania danych.</li>
+  </ul>
+</section>
+
+<!-- ==================== SLIDE 8: ZAKRES ==================== -->
+<section>
+  <h2>📐 Zakres projektu</h2>
+  <div class="two-col">
+    <div>
+      <h3 style="color:#50fa7b;">✅ W zakresie</h3>
+      <ul style="font-size:0.55em;">
+        <li>Backend w <span class="highlight">Go</span>, baza <span class="highlight">PostgreSQL</span></li>
+        <li>Frontend webowy (<span class="highlight">React lub Vue</span>) z responsywnym UI</li>
+        <li>Integracja Adobe DRM, bramek płatniczych i modułu VAT</li>
+        <li>System backupów i monitoringu (<span class="highlight">Prometheus + Grafana</span>)</li>
+        <li>Testy funkcjonalne, wydajnościowe i bezpieczeństwa</li>
+        <li>Szkolenia wewnętrzne dla zespołu utrzymania</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="color:#ff5555;">❌ Poza zakresem</h3>
+      <ul style="font-size:0.55em;">
+        <li>Aplikacje mobilne (iOS / Android)</li>
+        <li>Rozbudowane systemy rekomendacji AI</li>
+        <li>Obsługa odsprzedaży (resale) ebooków</li>
+        <li>Szczegółowe raportowanie zachowań użytkowników (kliknięcia)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 9: SYTUACJA RYNKOWA ==================== -->
+<section>
+  <h2>🌏 Sytuacja rynkowa i konkurenci</h2>
+  <table>
+    <thead>
+      <tr><th>Konkurent</th><th>Mocne strony</th><th>Słabe strony</th><th>Zagrożenia</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="highlight">Legimi</span></td>
+        <td>~250 tys. tytułów, silna marka w PL, integracja z czytnikami, multi-device, dobre relacje z wydawcami</td>
+        <td>Zależność od subskrypcji, problemy wizerunkowe, mniejsza obecność międzynarodowa</td>
+        <td>Może przejmować klientów, utrudniać pozyskiwanie wydawców, stanowić barierę wejścia</td>
+      </tr>
+      <tr>
+        <td><span class="highlight">Empik Go</span></td>
+        <td>Silna marka, duża baza klientów, Empik Go Originals, mocne budżety marketingowe</td>
+        <td>Mniejszy katalog, mniej funkcji (np. desktop), zmiany w abonamentach</td>
+        <td>Presja cenowa, silna obecność w PL, pozyskiwanie wydawców dzięki skali</td>
+      </tr>
+      <tr>
+        <td><span class="highlight">Storytel</span></td>
+        <td>~500 tys. tytułów, skala międzynarodowa, lider audiobooków, Storytel Originals</td>
+        <td>Mniejsza specjalizacja w ebookach, słabsze dopasowanie do rynku PL, zależność od subskrypcji</td>
+        <td>Konkurencja przy ekspansji międzynarodowej, przyciąganie dużych wydawców</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ==================== SLIDE 10: GRUPA DOCELOWA ==================== -->
+<section>
+  <h2>👥 Grupa docelowa</h2>
+  <table>
+    <thead>
+      <tr><th>Priorytet</th><th>Odbiorcy</th><th>Wielkość segmentu (TAM)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="badge badge-red">1</span></td><td>Wydawcy i self‑publisherzy</td><td>3 000 – 8 000 podmiotów</td></tr>
+      <tr><td><span class="badge badge-yellow">2</span></td><td>Czytelnicy ebooków</td><td>1,5 – 3 mln użytkowników</td></tr>
+      <tr><td><span class="badge badge-green">3</span></td><td>Użytkownicy audiobooków</td><td>2 – 4 mln użytkowników</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ==================== SLIDE 11: WIZJA ==================== -->
+<section>
+  <h2>🏆 Wizja</h2>
+  <p style="font-size:0.6em;">
+    Wizją firmy jest stworzenie <span class="highlight">nowoczesnej, bezpiecznej i skalowalnej platformy e‑księgarni w modelu marketplace</span>, która łączy wydawców, autorów i czytelników w jednym ekosystemie cyfrowym.
+  </p>
+  <p style="font-size:0.6em;">
+    Celem jest zbudowanie miejsca, w którym wydawcy mogą <span class="highlight">samodzielnie oferować i dystrybuować</span> swoje ebooki oraz audiobooki, a użytkownicy mają łatwy i wygodny dostęp do szerokiej oferty treści cyfrowych.
+  </p>
+  <p style="font-size:0.6em;">
+    Długoterminowo platforma ma stać się <span class="highlight">rozpoznawalnym i konkurencyjnym rozwiązaniem</span> na rynku książki cyfrowej, wyróżniającym się elastycznym modelem współpracy, nowoczesną technologią oraz atrakcyjnymi warunkami dla wydawców.
+  </p>
+</section>
+
+<!-- ==================== SLIDE 12: STRATEGIE ==================== -->
+<section>
+  <h2>📈 Strategie</h2>
+  <div style="font-size:0.58em;">
+    <h3>1. Strategia diferencjacji</h3>
+    <p>Odróżnienie platformy poprzez <span class="highlight">unikalny model marketplace</span> – niższe prowizje, lepsze warunki współpracy dla wydawców, większa elastyczność oraz dostęp do narzędzi analitycznych i promocyjnych.</p>
+
+    <h3>2. Strategia koncentracji (focus) na niszy</h3>
+    <p>Skoncentrowanie się początkowo na <span class="highlight">niezależnych wydawcach, self‑publisherach lub literaturze specjalistycznej</span>, gdzie konkurencja jest mniejsza niż w masowym segmencie bestsellerów.</p>
+
+    <h3>3. Strategia marketingu cyfrowego i partnerstw</h3>
+    <p>Dotarcie do grup docelowych poprzez <span class="highlight">SEO, content marketing, kampanie w mediach społecznościowych, reklamy performance</span> oraz współprace z wydawcami, blogerami, influencerami książkowymi i portalami branżowymi.</p>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 13: WYRÓŻNIENIE ==================== -->
+<section>
+  <h2>💎 Wyróżnienie</h2>
+  <ul style="font-size:0.6em;">
+    <li>Długoterminowa strategia opiera się na budowie <span class="highlight">otwartego marketplace</span> dla wydawców i autorów.</li>
+    <li>Kluczową przewagą jest połączenie <span class="highlight">niskich prowizji</span>, nowoczesnych narzędzi dla wydawców (analityka, promocja, samodzielne zarządzanie ofertą) oraz szerokiego dostępu użytkowników do treści cyfrowych.</li>
+    <li>Trwałość strategii opiera się na rozwijaniu <span class="highlight">własnej technologii</span>, skalowalnej infrastruktury chmurowej oraz budowaniu długoterminowych relacji.</li>
+    <li>W odróżnieniu od konkurentów opartych na modelu subskrypcyjnym, platforma koncentruje się na <span class="highlight">modelu marketplace</span>, który daje większą swobodę partnerom i tworzy trudną do skopiowania przewagę konkurencyjną.</li>
+  </ul>
+</section>
+
+<!-- ==================== SLIDE 14-18: PLAN DZIAŁANIA ==================== -->
+<section>
+  <h2>🚀 Plan działania – Priorytety 1–3</h2>
+  <table>
+    <thead>
+      <tr><th>Priorytet</th><th>Cel</th><th>Główne wskaźniki</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-red">1</span></td>
+        <td><span class="highlight">Uruchomienie platformy i pozyskanie pierwszych wydawców</span><br>Wdrożenie MVP oraz pozyskanie pierwszych partnerów. Budowa początkowego katalogu treści.</td>
+        <td>• Wydawcy: <strong>50+</strong><br>• Tytuły: <strong>5 000+</strong><br>• Termin: <strong>6 miesięcy</strong></td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-yellow">2</span></td>
+        <td><span class="highlight">Pozyskanie i wzrost bazy użytkowników</span><br>Budowa rozpoznawalności, marketing cyfrowy i partnerstwa.</td>
+        <td>• MAU: <strong>10 000+</strong><br>• Rejestracje: <strong>20 000+</strong><br>• Transakcje/mies.: <strong>2 000+</strong></td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-green">3</span></td>
+        <td><span class="highlight">Zwiększanie sprzedaży i retencji użytkowników</span><br>Zwiększenie częstotliwości zakupów, rozwój oferty i promocje.</td>
+        <td>• MRR<br>• AOV<br>• Wskaźnik powracających klientów<br>• Retencja 3/6 mies.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>🚀 Plan działania – Priorytety 4–5</h2>
+  <table>
+    <thead>
+      <tr><th>Priorytet</th><th>Cel</th><th>Główne wskaźniki</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-green">4</span></td>
+        <td><span class="highlight">Rozwój technologiczny i skalowanie platformy</span><br>Rozbudowa funkcjonalności, poprawa wydajności, skalowanie infrastruktury.</td>
+        <td>• Uptime: <strong>99,9%</strong><br>• Aktywni wydawcy: <strong>500+</strong><br>• Tytuły: <strong>50 000+</strong></td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-yellow">5</span></td>
+        <td><span class="highlight">Ekspansja i rozwój długoterminowy</span><br>Zwiększanie udziału w rynku, wejście na nowe rynki zagraniczne.</td>
+        <td>• Udział w rynku<br>• MAU: <strong>100 000+</strong><br>• Liczba rynków/krajów<br>• Wzrost przychodów YoY</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ==================== SLIDE 19: CZEGO NIE ROBIMY ==================== -->
+<section>
+  <h2>🚫 Czego <em>nie</em> robimy</h2>
+  <ul style="font-size:0.6em;">
+    <li><span class="highlight">Nie konkurujemy bezpośrednio</span> z dużymi platformami subskrypcyjnymi poprzez kosztowne inwestycje w własne treści ekskluzywne ani wojny cenowe.</li>
+    <li><span class="highlight">Nie prowadzimy działalności jako tradycyjne wydawnictwo</span> – nie tworzymy ani nie wydajemy własnych książek; koncentrujemy się na roli platformy technologicznej i pośrednika.</li>
+    <li><span class="highlight">Nie rozwijamy sprzedaży fizycznych książek</span> ani logistyki magazynowej – skupiamy się wyłącznie na treściach cyfrowych.</li>
+    <li><span class="highlight">Nie planujemy od początku ekspansji na wiele rynków zagranicznych</span> – zakładamy stopniowy rozwój po osiągnięciu stabilnej pozycji na rynku krajowym.</li>
+  </ul>
+</section>
+
+<!-- ==================== SLIDE 20: RYZYKA STRATEGICZNE ==================== -->
+<section>
+  <h2>⚠️ Ryzyka strategiczne i metody ograniczenia</h2>
+  <table>
+    <thead>
+      <tr><th>Ryzyko</th><th>Wpływ</th><th>Ograniczenie</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Pozyskanie zbyt małej liczby wydawców</td><td><span class="badge badge-red">WYSOKI</span></td><td>Konkurencyjne prowizje, aktywny onboarding, programy partnerskie</td></tr>
+      <tr><td>Niskie pozyskanie użytkowników</td><td><span class="badge badge-red">WYSOKI</span></td><td>Marketing cyfrowy, SEO, kampanie reklamowe, partnerstwa</td></tr>
+      <tr><td>Silna konkurencja rynkowa</td><td><span class="badge badge-red">WYSOKI</span></td><td>Model marketplace, koncentracja na niszy, przewagi technologiczne</td></tr>
+      <tr><td>Awaria techniczna / niedostępność</td><td><span class="badge badge-red">WYSOKI</span></td><td>Chmura, redundancja, monitoring, backup, testy wydajnościowe</td></tr>
+      <tr><td>Naruszenie bezpieczeństwa danych</td><td><span class="badge badge-red">WYSOKI</span></td><td>Szyfrowanie, MFA, firewalle, audyty bezpieczeństwa</td></tr>
+      <tr><td>Wzrost kosztów operacyjnych</td><td><span class="badge badge-yellow">ŚREDNI</span></td><td>Kontrola budżetu, skalowanie kosztów, optymalizacja zasobów</td></tr>
+      <tr><td>Zmiany prawne i regulacyjne</td><td><span class="badge badge-yellow">ŚREDNI</span></td><td>Monitoring zmian prawnych, konsultacje, dostosowanie procedur</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ==================== SLIDE 21: CELE SMART ==================== -->
+<section>
+  <h2>🎯 Cele SMART</h2>
+  <table>
+    <thead>
+      <tr><th>Cel</th><th>Specyficzny</th><th>Mierzalny</th><th>Osiągalny</th><th>Istotny</th><th>Określony w czasie</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="highlight">Uruchomienie MVP</span> z podstawowymi funkcjami sklepu i portalu partnerów</td>
+        <td>Backend Go, frontend React/Vue, formaty EPUB/PDF/MOBI/AZW3, Adobe DRM, bramki płatnicze, moduł VAT UE, portal autorów</td>
+        <td>Lista wymagań funkcjonalnych z kryteriami akceptacji</td>
+        <td>Zdefiniowany stos technologiczny, harmonogram, budżet</td>
+        <td>Pierwszy działający produkt umożliwiający pozyskanie wydawców i rozpoczęcie sprzedaży</td>
+        <td>6 miesięcy od startu projektu</td>
+      </tr>
+      <tr>
+        <td><span class="highlight">Dostępność 99,5%</span> i wydajność <span class="highlight">≥ 200 żądań/s</span></td>
+        <td>SLA dostępności 99,5%, przepustowość ≥ 200 req/s; architektura hybrydowa AWS + Hetzner/OVH, Prometheus + Grafana</td>
+        <td>Automatyczny monitoring – raporty uptime i czasu odpowiedzi</td>
+        <td>Redundancja, backupy Docker, testy wydajnościowe</td>
+        <td>Niska dostępność = porzucone koszyki; SLA ≥ 99,5% to minimalny standard</td>
+        <td>Potwierdzone w testach przed wdrożeniem i utrzymane po uruchomieniu</td>
+      </tr>
+      <tr>
+        <td><span class="highlight">Zgodność z GDPR i PCI‑DSS</span> oraz wdrożenie mechanizmów logowania</td>
+        <td>GDPR, PCI‑DSS, logowanie Google/Microsoft/PayPal, 2FA, passkey</td>
+        <td>Audyty, testy, checklisty; liczba użytkowników z aktywnym 2FA/passkey</td>
+        <td>Gotowe rozwiązania (Stripe/PayPal, OAuth2, WebAuthn); testy bezpieczeństwa w harmonogramie</td>
+        <td>Bez zgodności platforma nie może legalnie działać w UE ani przetwarzać płatności</td>
+        <td>Audyty i testy ukończone przed uruchomieniem (w ramach 6 mies.)</td>
+      </tr>
+      <tr>
+        <td><span class="highlight">Testy i szkolenia</span> dla zespołu utrzymania</td>
+        <td>Testy funkcjonalne, wydajnościowe, bezpieczeństwa + szkolenia wewnętrzne</td>
+        <td>Raporty testów (błędy, czas odpowiedzi, wyniki pentestów); lista obecności szkoleń</td>
+        <td>Środowiska testowe i narzędzia zaplanowane; szkolenia z dokumentacji operacyjnej</td>
+        <td>Minimalizacja ryzyka błędów na produkcji; stabilność długoterminowa</td>
+        <td>Testy przed wdrożeniem, szkolenia po wdrożeniu (w ramach 6 mies.)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ==================== SLIDE 22-23: REJESTR RYZYK ==================== -->
+<section>
+  <h2>📋 Rejestr ryzyk (1/2)</h2>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Opis ryzyka</th><th>Przyczyna</th><th>Konsekwencje</th><th>Prawd.</th><th>Wpływ</th><th>Poziom</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Opóźnienie dostarczenia MVP poza 6 miesięcy</td><td>Złożoność równoległej implementacji wielu modułów przy ograniczonych zasobach</td><td>Przesunięcie premiery, przekroczenie budżetu, utrata partnerów</td><td>WYS.</td><td>WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+      <tr><td>2</td><td>Przekroczenie budżetu projektu</td><td>Nieprzewidziane koszty licencji (Adobe DRM), infrastruktury, audytów, integracji płatności</td><td>Cięcie zakresu, opóźnienie wdrożenia, brak środków na marketing</td><td>ŚR.</td><td>WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+      <tr><td>3</td><td>Nieskuteczna integracja Adobe DRM</td><td>Złożoność API dostawcy, problemy z konwersją formatów, błędy w zabezpieczaniu</td><td>Ebooki niedostępne po zakupie, reklamacje, utrata zaufania</td><td>ŚR.</td><td>WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+      <tr><td>4</td><td>Niepowodzenie audytu GDPR / PCI‑DSS</td><td>Niewłaściwe przetwarzanie danych, luki w szyfrowaniu, brak mechanizmów usuwania danych</td><td>Wstrzymanie uruchomienia, kary finansowe, utrata certyfikacji</td><td>ŚR.</td><td>B.WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+      <tr><td>5</td><td>System nie osiąga ≥ 200 żądań/s</td><td>Brak optymalizacji zapytań PostgreSQL, niewystarczające zasoby, błędy cache</td><td>Długie czasy ładowania, porzucanie koszyków, negatywne opinie</td><td>ŚR.</td><td>WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>📋 Rejestr ryzyk (2/2)</h2>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Opis ryzyka</th><th>Przyczyna</th><th>Konsekwencje</th><th>Prawd.</th><th>Wpływ</th><th>Poziom</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>6</td><td>Awaria mechanizmu failover (AWS ↔ Hetzner/OVH)</td><td>Błędy replikacji, niesynchronizowane backupy Docker</td><td>Długie przestoje, utrata danych transakcyjnych</td><td>NIS.</td><td>B.WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+      <tr><td>7</td><td>Niskie zainteresowanie wśród wydawców i autorów</td><td>Zbyt wysokie prowizje, skomplikowany onboarding, silna konkurencja</td><td>Pusty katalog, brak oferty dla czytelników</td><td>ŚR.</td><td>WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+      <tr><td>8</td><td>Wyciek danych logowania lub transakcyjnych</td><td>Ataki cybernetyczne, błędy 2FA/passkey, nieszczelności API</td><td>Utrata zaufania, straty finansowe, odpowiedzialność prawna</td><td>NIS.</td><td>B.WYS.</td><td><span class="badge badge-red">WYSOKI</span></td></tr>
+      <tr><td>9</td><td>Błędy w naliczaniu VAT dla krajów UE</td><td>Nieaktualne stawki, brak walidacji kraju, błędy integracji z bramkami</td><td>Nieprawidłowe faktury, problemy księgowe, ryzyko kontroli</td><td>ŚR.</td><td>ŚR.</td><td><span class="badge badge-yellow">ŚREDNI</span></td></tr>
+      <tr><td>10</td><td>Nieskuteczne szkolenia zespołu utrzymania</td><td>Zbyt ogólne materiały, brak scenariuszy awaryjnych, niedostateczna wiedza</td><td>Długi czas reakcji na awarie, błędy administracyjne</td><td>ŚR.</td><td>ŚR.</td><td><span class="badge badge-yellow">ŚREDNI</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ==================== SLIDE 24: WBS ==================== -->
+<section>
+  <h2>🗂️ Struktura podziału prac (WBS)</h2>
+  <div style="font-size:0.55em; columns: 2; column-gap: 2em;">
+    <h4>1. Inicjalizacja</h4>
+    <ul>
+      <li>1.1 Określenie celów</li>
+      <li>1.2 Identyfikacja interesariuszy</li>
+      <li>1.3 Harmonogram</li>
+      <li>1.4 Zgromadzenie budżetu</li>
+    </ul>
+    <h4>2. Planowanie</h4>
+    <ul>
+      <li>2.1 Badanie konkurencji</li>
+      <li>2.2 Analiza klientów i trendów</li>
+      <li>2.3 Projekt modelu subskrypcyjnego</li>
+      <li>2.4 Analiza kosztów początkowych</li>
+      <li>2.5 Prognoza przychodów</li>
+      <li>2.6 Analiza rentowności</li>
+      <li>2.7 Zaplanowanie marketingu</li>
+    </ul>
+    <h4>3. Projekt platformy</h4>
+    <ul>
+      <li>3.1 Wymagania funkcjonalne</li>
+      <li>3.2 Wymagania niefunkcjonalne</li>
+      <li>3.3 Projekt UI</li>
+    </ul>
+    <h4>4. Technologia</h4>
+    <ul>
+      <li>4.1 Baza danych</li>
+      <li>4.2 API</li>
+      <li>4.3 Strona WWW</li>
+      <li>4.4 Aplikacja mobilna</li>
+      <li>4.5 System płatności</li>
+      <li>4.6 System analityczny</li>
+    </ul>
+    <h4>5. Zarządzanie zasobami</h4>
+    <ul>
+      <li>5.1 Pozyskanie ebooków</li>
+      <li>5.2 Pozyskanie audiobooków</li>
+      <li>5.3 Digitalizacja zasobów</li>
+      <li>5.4 Metadane</li>
+      <li>5.5 Aktualizacja katalogu</li>
+    </ul>
+    <h4>6. Testowanie</h4>
+    <ul>
+      <li>6.1 Testy funkcjonalne</li>
+      <li>6.2 Testy wydajnościowe</li>
+      <li>6.3 Testy bezpieczeństwa</li>
+      <li>6.4 Testy użytkowników</li>
+    </ul>
+    <h4>7. Wdrożenie</h4>
+    <ul>
+      <li>7.1 Środowisko produkcyjne</li>
+      <li>7.2 Publikacja platformy</li>
+      <li>7.3 Publikacja aplikacji</li>
+      <li>7.4 Start kampanii marketingowej</li>
+      <li>7.5 Obsługa pierwszych użytkowników</li>
+    </ul>
+    <h4>8. Utrzymanie i rozwój</h4>
+    <ul>
+      <li>8.1 Obsługa klienta</li>
+      <li>8.2 Aktualizowanie systemu</li>
+      <li>8.3 Rozwój nowych funkcji</li>
+      <li>8.4 Analiza danych</li>
+      <li>8.5 Rozszerzanie oferty</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 25: ARCHITEKTURA ==================== -->
+<section>
+  <h2>🏗️ Architektura technologiczna</h2>
+  <div class="two-col" style="font-size:0.6em;">
+    <div>
+      <h3>Backend</h3>
+      <ul>
+        <li><span class="highlight">Go</span> – język programowania</li>
+        <li><span class="highlight">PostgreSQL</span> – baza danych</li>
+        <li><span class="highlight">Docker</span> – konteneryzacja</li>
+        <li><span class="highlight">Adobe DRM</span> – zabezpieczenie treści</li>
+      </ul>
+      <h3>Frontend</h3>
+      <ul>
+        <li><span class="highlight">React lub Vue</span> – framework UI</li>
+        <li>Responsywny design</li>
+        <li>Lokalizacja: EN, DE, FR, ES, IT, NL</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Infrastruktura</h3>
+      <ul>
+        <li><span class="highlight">AWS Frankfurt</span> – środowisko główne</li>
+        <li><span class="highlight">Hetzner / OVH</span> – fail‑over</li>
+        <li>Codzienne backupy Docker (retencja 30 dni)</li>
+      </ul>
+      <h3>Monitoring & BI</h3>
+      <ul>
+        <li><span class="highlight">Prometheus + Grafana</span> – monitoring</li>
+        <li><span class="highlight">Tableau / Metabase</span> – raportowanie BI</li>
+      </ul>
+      <h3>Płatności</h3>
+      <ul>
+        <li>Stripe, PayPal, lokalni dostawcy</li>
+        <li>Moduł VAT UE</li>
+        <li>Zgodność z PCI‑DSS</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE 26: PODSUMOWANIE ==================== -->
+<section class="center" data-background-gradient="linear-gradient(135deg, #0f0c29, #302b63, #24243e)">
+  <h2>📌 Podsumowanie</h2>
+  <div style="font-size:0.6em; text-align:left; max-width:800px; margin:0 auto;">
+    <p><span class="highlight">e‑BookStore</span> to platforma marketplace łącząca wydawców, autorów i czytelników w jednym ekosystemie cyfrowym.</p>
+    <ul>
+      <li><span class="accent">MVP</span> w ciągu 6 miesięcy z pełną funkcjonalnością sklepu i portalu partnerów.</li>
+      <li><span class="accent">Architektura hybrydowa</span> AWS + Hetzner/OVH z SLA ≥ 99,5%.</li>
+      <li><span class="accent">Bezpieczeństwo</span> – zgodność z GDPR i PCI‑DSS, 2FA + passkey.</li>
+      <li><span class="accent">Strategia</span> – diferencjacja, focus na niszę, marketing cyfrowy i partnerstwa.</li>
+      <li><span class="accent">10 zidentyfikowanych ryzyk</span> z metodami ograniczenia i planami reakcji.</li>
+    </ul>
+  </div>
+  <p style="font-size:0.7em; color:#42affa; margin-top:1.5em;">Dziękuję za uwagę! 🙏</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0
+  });
+</script>
+</body>
+</html>
