@@ -22,6 +22,7 @@
     .reveal .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
     .badge-red { background: #ff5555; color: #fff; }
     .badge-yellow { background: #f1fa8c; color: #333; }
+    .badge-orange { background: #ffb86c; color: #333; }
     .badge-green { background: #50fa7b; color: #333; }
     .badge-blue { background: #42affa; color: #fff; }
     .badge-gray { background: #6272a4; color: #fff; }
@@ -31,16 +32,44 @@
     .reveal section.center { text-align: center; }
     .highlight { color: #f1fa8c; font-weight: bold; }
     .accent { color: #42affa; }
-    .wbs-col { columns: 2; column-gap: 2em; font-size: 0.55em; }
-    .wbs-col h4 { margin-top: 0.3em; }
-    .wbs-col ul { margin: 0.1em 0 0.5em 1em; }
+    .wbs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 0.6em 0.8em;
+      font-size: 0.42em;
+      line-height: 1.35;
+    }
+    .wbs-card {
+      background: #16213e;
+      border-radius: 6px;
+      padding: 0.5em 0.6em;
+      border-left: 3px solid #42affa;
+    }
+    .wbs-card h4 {
+      margin: 0 0 0.3em 0;
+      font-size: 1.1em;
+      color: #8be9fd;
+      border-bottom: 1px solid #0f3460;
+      padding-bottom: 0.2em;
+    }
+    .wbs-card ul {
+      margin: 0;
+      padding-left: 1em;
+      list-style: none;
+    }
+    .wbs-card ul li::before {
+      content: "› ";
+      color: #6272a4;
+    }
+
   </style>
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
 
-<!-- ==================== SLIDE 1: TITLE ==================== -->
+<!-- ==================== SLIDE: TITLE ==================== -->
 <section class="center" data-background-gradient="linear-gradient(135deg, #0f0c29, #302b63, #24243e)">
   <h1>📚 e‑BookStore</h1>
   <h3 class="subtitle">Europejski Rynek Ebooków</h3>
@@ -53,7 +82,7 @@
   </p>
 </section>
 
-<!-- ==================== SLIDE 2: SPIS TREŚCI ==================== -->
+<!-- ==================== SLIDE: SPIS TREŚCI ==================== -->
 <section>
   <h2>📋 Spis treści</h2>
   <ol style="font-size:0.7em; line-height:2;">
@@ -65,7 +94,7 @@
   </ol>
 </section>
 
-<!-- ==================== SLIDE 3: OPIS PROJEKTU ==================== -->
+<!-- ==================== SLIDE: OPIS PROJEKTU ==================== -->
 <section>
   <h2>📖 Opis projektu</h2>
   <table>
@@ -74,7 +103,7 @@
   </table>
 </section>
 
-<!-- ==================== SLIDE 4: CELE PROJEKTU ==================== -->
+<!-- ==================== SLIDE: CELE PROJEKTU ==================== -->
 <section>
   <h2>🎯 Cele projektu</h2>
   <ul style="font-size:0.65em;">
@@ -86,7 +115,7 @@
   </ul>
 </section>
 
-<!-- ==================== SLIDE 5: WYMAGANIA FUNKCJONALNE ==================== -->
+<!-- ==================== SLIDE: WYMAGANIA FUNKCJONALNE ==================== -->
 <section>
   <h2>⚙️ Wymagania funkcjonalne</h2>
   <ul style="font-size:0.6em;">
@@ -99,7 +128,7 @@
   </ul>
 </section>
 
-<!-- ==================== SLIDE 6: WYMAGANIA NIEFUNKCJONALNE ==================== -->
+<!-- ==================== SLIDE: WYMAGANIA NIEFUNKCJONALNE ==================== -->
 <section>
   <h2>🔧 Wymagania niefunkcjonalne</h2>
   <ul style="font-size:0.65em;">
@@ -111,7 +140,7 @@
   </ul>
 </section>
 
-<!-- ==================== SLIDE 7: REZULTATY ==================== -->
+<!-- ==================== SLIDE: REZULTATY ==================== -->
 <section>
   <h2>✅ Rezultaty</h2>
   <ul style="font-size:0.6em;">
@@ -123,7 +152,7 @@
   </ul>
 </section>
 
-<!-- ==================== SLIDE 8: ZAKRES ==================== -->
+<!-- ==================== SLIDE: ZAKRES ==================== -->
 <section>
   <h2>📐 Zakres projektu</h2>
   <div class="two-col">
@@ -150,7 +179,144 @@
   </div>
 </section>
 
-<!-- ==================== SLIDE 9: SYTUACJA RYNKOWA ==================== -->
+<!-- ==================== SLIDE: ARCHITEKTURA ==================== -->
+<section>
+  <h2>🏗️ Architektura technologiczna</h2>
+  <div class="two-col" style="font-size:0.6em;">
+    <div>
+      <h3>Backend</h3>
+      <ul>
+        <li><span class="highlight">Go</span> – język programowania</li>
+        <li><span class="highlight">PostgreSQL</span> – baza danych</li>
+        <li><span class="highlight">Docker</span> – konteneryzacja</li>
+        <li><span class="highlight">Adobe DRM</span> – zabezpieczenie treści</li>
+      </ul>
+      <h3>Frontend</h3>
+      <ul>
+        <li><span class="highlight">React lub Vue</span> – framework UI</li>
+        <li>Responsywny design</li>
+        <li>Lokalizacja: EN, DE, FR, ES, IT, NL</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Infrastruktura</h3>
+      <ul>
+        <li><span class="highlight">AWS Frankfurt</span> – środowisko główne</li>
+        <li><span class="highlight">Hetzner / OVH</span> – fail‑over</li>
+        <li>Codzienne backupy Docker (retencja 30 dni)</li>
+      </ul>
+      <h3>Monitoring & BI</h3>
+      <ul>
+        <li><span class="highlight">Prometheus + Grafana</span> – monitoring</li>
+        <li><span class="highlight">Tableau / Metabase</span> – raportowanie BI</li>
+      </ul>
+      <h3>Płatności</h3>
+      <ul>
+        <li>Stripe, PayPal, lokalni dostawcy</li>
+        <li>Moduł VAT UE</li>
+        <li>Zgodność z PCI‑DSS</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SLIDE: WBS ==================== -->
+<section>
+  <h2>🗂️ Struktura podziału prac (WBS)</h2>
+  <div class="wbs-grid">
+
+    <div class="wbs-card">
+      <h4>1. Inicjalizacja</h4>
+      <ul>
+        <li>1.1 Cele</li>
+        <li>1.2 Interesariusze</li>
+        <li>1.3 Harmonogram</li>
+        <li>1.4 Budżet</li>
+      </ul>
+    </div>
+
+    <div class="wbs-card">
+      <h4>2. Planowanie</h4>
+      <ul>
+        <li>2.1 Konkurencja</li>
+        <li>2.2 Klienci i trendy</li>
+        <li>2.3 Model subskrypcji</li>
+        <li>2.4 Koszty początkowe</li>
+        <li>2.5 Prognoza przychodów</li>
+        <li>2.6 Rentowność</li>
+        <li>2.7 Marketing</li>
+      </ul>
+    </div>
+
+    <div class="wbs-card">
+      <h4>3. Projekt platformy</h4>
+      <ul>
+        <li>3.1 Wym. funkcjonalne</li>
+        <li>3.2 Wym. niefunkcjonalne</li>
+        <li>3.3 Projekt UI</li>
+      </ul>
+    </div>
+
+    <div class="wbs-card">
+      <h4>4. Technologia</h4>
+      <ul>
+        <li>4.1 Baza danych</li>
+        <li>4.2 API</li>
+        <li>4.3 Strona WWW</li>
+        <li>4.4 Aplikacja mobilna</li>
+        <li>4.5 System płatności</li>
+        <li>4.6 System analityczny</li>
+      </ul>
+    </div>
+
+    <div class="wbs-card">
+      <h4>5. Zarządzanie zasobami</h4>
+      <ul>
+        <li>5.1 Pozyskanie ebooków</li>
+        <li>5.2 Pozyskanie audiobooków</li>
+        <li>5.3 Digitalizacja</li>
+        <li>5.4 Metadane</li>
+        <li>5.5 Aktualizacja katalogu</li>
+      </ul>
+    </div>
+
+    <div class="wbs-card">
+      <h4>6. Testowanie</h4>
+      <ul>
+        <li>6.1 Funkcjonalne</li>
+        <li>6.2 Wydajnościowe</li>
+        <li>6.3 Bezpieczeństwa</li>
+        <li>6.4 Użytkowników</li>
+      </ul>
+    </div>
+
+    <div class="wbs-card">
+      <h4>7. Wdrożenie</h4>
+      <ul>
+        <li>7.1 Środowisko produkcyjne</li>
+        <li>7.2 Publikacja platformy</li>
+        <li>7.3 Publikacja aplikacji</li>
+        <li>7.4 Start kampanii marketingowej</li>
+        <li>7.5 Obsługa pierwszych użytkowników</li>
+      </ul>
+    </div>
+
+    <div class="wbs-card">
+      <h4>8. Utrzymanie i rozwój</h4>
+      <ul>
+        <li>8.1 Obsługa klienta</li>
+        <li>8.2 Aktualizacje systemu</li>
+        <li>8.3 Nowe funkcje</li>
+        <li>8.4 Analiza danych</li>
+        <li>8.5 Rozszerzanie oferty</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==================== SLIDE: SYTUACJA RYNKOWA ==================== -->
 <section>
   <h2>🌏 Sytuacja rynkowa i konkurenci</h2>
   <table>
@@ -180,7 +346,7 @@
   </table>
 </section>
 
-<!-- ==================== SLIDE 10: GRUPA DOCELOWA ==================== -->
+<!-- ==================== SLIDE: GRUPA DOCELOWA ==================== -->
 <section>
   <h2>👥 Grupa docelowa</h2>
   <table>
@@ -195,7 +361,7 @@
   </table>
 </section>
 
-<!-- ==================== SLIDE 11: WIZJA ==================== -->
+<!-- ==================== SLIDE: WIZJA ==================== -->
 <section>
   <h2>🏆 Wizja</h2>
   <p style="font-size:0.6em;">
@@ -209,7 +375,7 @@
   </p>
 </section>
 
-<!-- ==================== SLIDE 12: STRATEGIE ==================== -->
+<!-- ==================== SLIDE: STRATEGIE ==================== -->
 <section>
   <h2>📈 Strategie</h2>
   <div style="font-size:0.58em;">
@@ -224,7 +390,7 @@
   </div>
 </section>
 
-<!-- ==================== SLIDE 13: WYRÓŻNIENIE ==================== -->
+<!-- ==================== SLIDE: WYRÓŻNIENIE ==================== -->
 <section>
   <h2>💎 Wyróżnienie</h2>
   <ul style="font-size:0.6em;">
@@ -235,7 +401,7 @@
   </ul>
 </section>
 
-<!-- ==================== SLIDE 14: PLAN DZIAŁANIA 1–3 ==================== -->
+<!-- ==================== SLIDE: PLAN DZIAŁANIA 1–3 ==================== -->
 <section>
   <h2>🚀 Plan działania – Priorytety 1–3</h2>
   <table>
@@ -262,7 +428,7 @@
   </table>
 </section>
 
-<!-- ==================== SLIDE 15: PLAN DZIAŁANIA 4–5 ==================== -->
+<!-- ==================== SLIDE: PLAN DZIAŁANIA 4–5 ==================== -->
 <section>
   <h2>🚀 Plan działania – Priorytety 4–5</h2>
   <table>
@@ -284,7 +450,7 @@
   </table>
 </section>
 
-<!-- ==================== SLIDE 16: CZEGO NIE ROBIMY ==================== -->
+<!-- ==================== SLIDE: CZEGO NIE ROBIMY ==================== -->
 <section>
   <h2>🚫 Czego <em>nie</em> robimy</h2>
   <ul style="font-size:0.6em;">
@@ -295,7 +461,7 @@
   </ul>
 </section>
 
-<!-- ==================== SLIDE 17: RYZYKA STRATEGICZNE ==================== -->
+<!-- ==================== SLIDE: RYZYKA STRATEGICZNE ==================== -->
 <section>
   <h2>⚠️ Ryzyka strategiczne i metody ograniczenia</h2>
   <table>
@@ -314,7 +480,7 @@
   </table>
 </section>
 
-<!-- ==================== SLIDE 18: CELE SMART ==================== -->
+<!-- ==================== SLIDE: CELE SMART ==================== -->
 <section>
   <h2>🎯 Cele SMART</h2>
   <table>
@@ -358,7 +524,7 @@
   </table>
 </section>
 
-<!-- ==================== SLIDE 19: ANALIZA RYZYKA 1/2 ==================== -->
+<!-- ==================== SLIDE: ANALIZA RYZYKA 1/2 ==================== -->
 <section>
   <h2>📋 Analiza ryzyka (1/2)</h2>
   <table>
@@ -371,9 +537,9 @@
         <td>Opóźnienie dostarczenia MVP poza 6 miesięcy</td>
         <td>Złożoność równoległej implementacji wielu modułów przy ograniczonych zasobach</td>
         <td>Przesunięcie premiery, przekroczenie budżetu, utrata partnerów</td>
-        <td><span class="badge badge-red">WYSOKIE</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-orange">WYSOKIE</span></td>
+        <td><span class="badge badge-orange">WYSOKI</span></td>
+        <td><span class="badge badge-red">KRYTYCZNY</span></td>
       </tr>
       <tr>
         <td>2</td>
@@ -381,8 +547,8 @@
         <td>Nieprzewidziane koszty licencji (Adobe DRM), infrastruktury, audytów, integracji płatności</td>
         <td>Cięcie zakresu, opóźnienie wdrożenia, brak środków na marketing</td>
         <td><span class="badge badge-yellow">ŚREDNIE</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-orange">WYSOKI</span></td>
+        <td><span class="badge badge-orange">POWAŻNY</span></td>
       </tr>
       <tr>
         <td>3</td>
@@ -390,8 +556,8 @@
         <td>Złożoność API dostawcy, problemy z konwersją formatów, błędy w zabezpieczaniu</td>
         <td>Ebooki niedostępne po zakupie, reklamacje, utrata zaufania</td>
         <td><span class="badge badge-yellow">ŚREDNIE</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-orange">WYSOKI</span></td>
+        <td><span class="badge badge-orange">POWAŻNY</span></td>
       </tr>
       <tr>
         <td>4</td>
@@ -399,8 +565,8 @@
         <td>Niewłaściwe przetwarzanie danych, luki w szyfrowaniu, brak mechanizmów usuwania danych</td>
         <td>Wstrzymanie uruchomienia, kary finansowe, utrata certyfikacji</td>
         <td><span class="badge badge-yellow">ŚREDNIE</span></td>
-        <td><span class="badge badge-red">B. WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-red">B.WYSOKI</span></td>
+        <td><span class="badge badge-red">KRYTYCZNY</span></td>
       </tr>
       <tr>
         <td>5</td>
@@ -408,14 +574,14 @@
         <td>Brak optymalizacji zapytań PostgreSQL, niewystarczające zasoby, błędy cache</td>
         <td>Długie czasy ładowania, porzucanie koszyków, negatywne opinie</td>
         <td><span class="badge badge-yellow">ŚREDNIE</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-orange">WYSOKI</span></td>
+        <td><span class="badge badge-orange">POWAŻNY</span></td>
       </tr>
     </tbody>
   </table>
 </section>
 
-<!-- ==================== SLIDE 20: ANALIZA RYZYKA 2/2 ==================== -->
+<!-- ==================== SLIDE: ANALIZA RYZYKA 2/2 ==================== -->
 <section>
   <h2>📋 Analiza ryzyka (2/2)</h2>
   <table>
@@ -429,8 +595,8 @@
         <td>Błędy replikacji, niesynchronizowane backupy Docker</td>
         <td>Długie przestoje, utrata danych transakcyjnych</td>
         <td><span class="badge badge-green">NISKIE</span></td>
-        <td><span class="badge badge-red">B. WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-red">B.WYSOKI</span></td>
+        <td><span class="badge badge-red">KRYTYCZNY</span></td>
       </tr>
       <tr>
         <td>7</td>
@@ -438,8 +604,8 @@
         <td>Zbyt wysokie prowizje, skomplikowany onboarding, silna konkurencja</td>
         <td>Pusty katalog, brak oferty dla czytelników</td>
         <td><span class="badge badge-yellow">ŚREDNIE</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-orange">WYSOKI</span></td>
+        <td><span class="badge badge-orange">POWAŻNY</span></td>
       </tr>
       <tr>
         <td>8</td>
@@ -447,8 +613,8 @@
         <td>Ataki cybernetyczne, błędy 2FA/passkey, nieszczelności API</td>
         <td>Utrata zaufania, straty finansowe, odpowiedzialność prawna</td>
         <td><span class="badge badge-green">NISKIE</span></td>
-        <td><span class="badge badge-red">B. WYSOKI</span></td>
-        <td><span class="badge badge-red">WYSOKI</span></td>
+        <td><span class="badge badge-red">B.WYSOKI</span></td>
+        <td><span class="badge badge-red">KRYTYCZNY</span></td>
       </tr>
       <tr>
         <td>9</td>
@@ -457,7 +623,7 @@
         <td>Nieprawidłowe faktury, problemy księgowe, ryzyko kontroli</td>
         <td><span class="badge badge-yellow">ŚREDNIE</span></td>
         <td><span class="badge badge-yellow">ŚREDNI</span></td>
-        <td><span class="badge badge-yellow">ŚREDNI</span></td>
+        <td><span class="badge badge-yellow">UMIARKOWANY</span></td>
       </tr>
       <tr>
         <td>10</td>
@@ -466,135 +632,14 @@
         <td>Długi czas reakcji na awarie, błędy administracyjne</td>
         <td><span class="badge badge-yellow">ŚREDNIE</span></td>
         <td><span class="badge badge-yellow">ŚREDNI</span></td>
-        <td><span class="badge badge-yellow">ŚREDNI</span></td>
+        <td><span class="badge badge-yellow">UMIARKOWANY</span></td>
       </tr>
     </tbody>
   </table>
 </section>
 
-<!-- ==================== SLIDE 21: WBS (1/2) ==================== -->
-<section>
-  <h2>🗂️ Struktura podziału prac (WBS) – cz. 1</h2>
-  <div class="two-col" style="font-size:0.6em;">
-    <div>
-      <h3>1. Inicjalizacja</h3>
-      <ul>
-        <li>1.1 Określenie celów</li>
-        <li>1.2 Identyfikacja interesariuszy</li>
-        <li>1.3 Harmonogram</li>
-        <li>1.4 Zgromadzenie budżetu</li>
-      </ul>
-      <h3>2. Planowanie</h3>
-      <ul>
-        <li>2.1 Badanie konkurencji</li>
-        <li>2.2 Analiza klientów i trendów</li>
-        <li>2.3 Projekt modelu subskrypcyjnego</li>
-        <li>2.4 Analiza kosztów początkowych</li>
-        <li>2.5 Prognoza przychodów</li>
-        <li>2.6 Analiza rentowności</li>
-        <li>2.7 Zaplanowanie marketingu</li>
-      </ul>
-      <h3>3. Projekt platformy</h3>
-      <ul>
-        <li>3.1 Wymagania funkcjonalne</li>
-        <li>3.2 Wymagania niefunkcjonalne</li>
-        <li>3.3 Projekt UI</li>
-      </ul>
-      <h3>4. Technologia</h3>
-      <ul>
-        <li>4.1 Baza danych</li>
-        <li>4.2 API</li>
-        <li>4.3 Strona WWW</li>
-        <li>4.4 Aplikacja mobilna</li>
-        <li>4.5 System płatności</li>
-        <li>4.6 System analityczny</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
-<!-- ==================== SLIDE 22: WBS (2/2) ==================== -->
-<section>
-  <h2>🗂️ Struktura podziału prac (WBS) – cz. 2</h2>
-  <div class="two-col" style="font-size:0.6em;">
-    <div>
-      <h3>5. Zarządzanie zasobami</h3>
-      <ul>
-        <li>5.1 Pozyskanie ebooków</li>
-        <li>5.2 Pozyskanie audiobooków</li>
-        <li>5.3 Digitalizacja zasobów</li>
-        <li>5.4 Metadane</li>
-        <li>5.5 Aktualizacja katalogu</li>
-      </ul>
-      <h3>6. Testowanie</h3>
-      <ul>
-        <li>6.1 Testy funkcjonalne</li>
-        <li>6.2 Testy wydajnościowe</li>
-        <li>6.3 Testy bezpieczeństwa</li>
-        <li>6.4 Testy użytkowników</li>
-      </ul>
-      <h3>7. Wdrożenie</h3>
-      <ul>
-        <li>7.1 Środowisko produkcyjne</li>
-        <li>7.2 Publikacja platformy</li>
-        <li>7.3 Publikacja aplikacji</li>
-        <li>7.4 Start kampanii marketingowej</li>
-        <li>7.5 Obsługa pierwszych użytkowników</li>
-      </ul>
-      <h3>8. Utrzymanie i rozwój</h3>
-      <ul>
-        <li>8.1 Obsługa klienta</li>
-        <li>8.2 Aktualizowanie systemu</li>
-        <li>8.3 Rozwój nowych funkcji</li>
-        <li>8.4 Analiza danych</li>
-        <li>8.5 Rozszerzanie oferty</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== SLIDE 23: ARCHITEKTURA ==================== -->
-<section>
-  <h2>🏗️ Architektura technologiczna</h2>
-  <div class="two-col" style="font-size:0.6em;">
-    <div>
-      <h3>Backend</h3>
-      <ul>
-        <li><span class="highlight">Go</span> – język programowania</li>
-        <li><span class="highlight">PostgreSQL</span> – baza danych</li>
-        <li><span class="highlight">Docker</span> – konteneryzacja</li>
-        <li><span class="highlight">Adobe DRM</span> – zabezpieczenie treści</li>
-      </ul>
-      <h3>Frontend</h3>
-      <ul>
-        <li><span class="highlight">React lub Vue</span> – framework UI</li>
-        <li>Responsywny design</li>
-        <li>Lokalizacja: EN, DE, FR, ES, IT, NL</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Infrastruktura</h3>
-      <ul>
-        <li><span class="highlight">AWS Frankfurt</span> – środowisko główne</li>
-        <li><span class="highlight">Hetzner / OVH</span> – fail‑over</li>
-        <li>Codzienne backupy Docker (retencja 30 dni)</li>
-      </ul>
-      <h3>Monitoring & BI</h3>
-      <ul>
-        <li><span class="highlight">Prometheus + Grafana</span> – monitoring</li>
-        <li><span class="highlight">Tableau / Metabase</span> – raportowanie BI</li>
-      </ul>
-      <h3>Płatności</h3>
-      <ul>
-        <li>Stripe, PayPal, lokalni dostawcy</li>
-        <li>Moduł VAT UE</li>
-        <li>Zgodność z PCI‑DSS</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== SLIDE 24: PODSUMOWANIE ==================== -->
+<!-- ==================== SLIDE: PODSUMOWANIE ==================== -->
 <section class="center" data-background-gradient="linear-gradient(135deg, #0f0c29, #302b63, #24243e)">
   <h2>📌 Podsumowanie</h2>
   <div style="font-size:0.6em; text-align:left; max-width:800px; margin:0 auto;">
